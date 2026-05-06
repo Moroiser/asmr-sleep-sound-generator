@@ -1,6 +1,6 @@
-# Tap Sphere | 敲击音助眠生成器
+# ASMR Sleep Sound Generator | ASMR助眠音生成器
 
-> Generate customizable ASMR tapping sounds for sleep. 通过可定制参数生成 ASMR 敲击音，实现个性化助眠体验。
+> Generate customizable ASMR sleep sounds. 通过可定制参数生成 ASMR 助眠音，实现个性化助眠体验。
 
 ## 项目状态
 
@@ -21,7 +21,7 @@
 ## 项目目录
 
 ```
-tap-sphere/
+asmr-sleep-sound-generator/
 ├── README.md              # 项目总览（本文件）
 ├── references/            # 参考资料
 │   └── github-survey.md   # GitHub 开源项目调研
