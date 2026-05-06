@@ -5,7 +5,7 @@
 ## 项目状态
 
 - **阶段：** MVP 开发中
-- **当前版本**: v0.2 — 3D 头部交互 + 区域声学 + 6种材料 + 手动/随机模式
+- **当前版本**: v0.3 — 声音编排系统（片段库+预设管理+编排引擎+自然语言解析+LLM API配置+3D头部交互）
 - **创建时间：** 2026-05-06
 
 ## 核心想法
@@ -23,6 +23,8 @@
 ```
 asmr-sleep-sound-generator/
 ├── README.md              # 项目总览（本文件）
+├── docs/                  # 设计文档
+│   └── orchestration-design.md  # 声音编排架构设计
 ├── references/            # 参考资料
 │   └── github-survey.md   # GitHub 开源项目调研
 └── src/                   # 源代码
@@ -81,3 +83,7 @@ asmr-sleep-sound-generator/
 | 2026-05-06 13:30 | 小H | GitHub 调研完成：13 个项目，推荐 Tone.js + Web Audio API 路线 |
 | 2026-05-06 13:45 | 小H | MVP v0.1 完成：6 种材料 + 手动/随机模式 + 涟漪可视化 + 空间音频 |
 | 2026-05-06 13:55 | 小H | 重构为 3D 头部交互：Three.js + 8 个头部区域声学模型 + 射线检测 |
+| 2026-05-06 16:15 | 小H | 声音编排架构设计：片段库+时间线+预设+Agent智能编排 |
+| 2026-05-06 16:30 | 小H | P0 代码完成：clip-library + preset-manager + orchestrator + 5个内置预设 + 自然语言解析 + UI集成 |
+| 2026-05-06 16:35 | 小H | LLM API 集成：llm-parser + 设置弹窗 + MiniMax M2.7 测试通过（12 片段解析成功） |
+| 2026-05-07 01:10 | 小H | 重写 `src/index.html`：集成 GLTFLoader 加载 `male_bust.glb` 3D 头部模型（支持降级参数化头部）、三灯布光、射线检测+区域判断、AudioLibrary 预生成音频库（显示加载进度）、Sequencer 序列播放（输入 `1,2,3,4,5` 或 `f_w_0,e_m_1` 格式）、序列步骤高亮、AudioExporter 导出WAV、新增「序列」模式UI（seq-bar + seq-steps）、保留所有原有模式（手动/随机/预设/自然语言）、保留设置弹窗LLM API配置。

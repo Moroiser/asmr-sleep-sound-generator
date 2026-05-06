@@ -76,10 +76,11 @@ class MaterialSynth {
    * @param {number} stereoPan - 立体声位置 -1~1
    */
   play(materialKey, velocity = 0.7, region = null, stereoPan = 0) {
-    if (!this.isInitialized) return;
+    if (!this.isInitialized) { console.warn('[Synth] Not initialized!'); return; }
 
     const preset = MATERIAL_PRESETS[materialKey];
-    if (!preset) return;
+    if (!preset) { console.warn('[Synth] Unknown material:', materialKey); return; }
+    console.log('[Synth] Playing:', materialKey, 'vel:', velocity, 'pan:', stereoPan, 'region:', region?.name);
 
     const ctx = this.audioCtx;
     const now = ctx.currentTime;
@@ -95,7 +96,7 @@ class MaterialSynth {
 
     // === 1. 泛音振荡器组 ===
     const oscMix = ctx.createGain();
-    oscMix.gain.value = 0;
+    oscMix.gain.value = 1.0;
 
     preset.harmonics.forEach((harmonic, i) => {
       const osc = ctx.createOscillator();

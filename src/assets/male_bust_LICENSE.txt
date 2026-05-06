@@ -1,0 +1,5 @@
+Model: Male Bust 1
+Source: https://sketchfab.com/3d-models/male-bust-1-05895192750b45af9390e08c21780992
+Author: bv33556678 (https://sketchfab.com/b.vojneski)
+License: CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+Requirements: Author must be credited. Commercial use is allowed.

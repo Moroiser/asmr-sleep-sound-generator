@@ -17,6 +17,98 @@
       user-select: none;
     }
 
+    /* === 设置按钮 === */
+    .settings-btn {
+      position: absolute;
+      top: 12px;
+      right: 16px;
+      z-index: 20;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 50%;
+      width: 36px;
+      height: 36px;
+      font-size: 1.1em;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+    }
+    .settings-btn:hover { background: rgba(255,255,255,0.12); }
+
+    /* === 设置弹窗 === */
+    .settings-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(0,0,0,0.6);
+      z-index: 100;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      backdrop-filter: blur(4px);
+    }
+    .settings-modal {
+      background: #1a1a2e;
+      border: 1px solid rgba(100,120,255,0.2);
+      border-radius: 16px;
+      padding: 24px;
+      width: 90%;
+      max-width: 380px;
+    }
+    .settings-modal h3 {
+      font-size: 1em;
+      color: #b0c0ff;
+      margin-bottom: 4px;
+    }
+    .settings-hint {
+      font-size: 0.7em;
+      color: #506080;
+      margin-bottom: 16px;
+    }
+    .settings-field {
+      margin-bottom: 12px;
+    }
+    .settings-field label {
+      display: block;
+      font-size: 0.75em;
+      color: #708090;
+      margin-bottom: 4px;
+    }
+    .settings-field input {
+      width: 100%;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px;
+      padding: 8px 10px;
+      color: #e0e0f0;
+      font-size: 0.8em;
+      outline: none;
+    }
+    .settings-field input:focus { border-color: rgba(100,120,255,0.4); }
+    .settings-actions {
+      display: flex;
+      gap: 8px;
+      margin-top: 16px;
+    }
+    .settings-actions button {
+      flex: 1;
+      padding: 8px;
+      border-radius: 8px;
+      font-size: 0.8em;
+      cursor: pointer;
+      border: 1px solid;
+    }
+    .settings-save { background: rgba(100,200,150,0.15); border-color: rgba(100,200,150,0.3); color: #a0e0c0; }
+    .settings-cancel { background: rgba(255,255,255,0.04); border-color: rgba(255,255,255,0.1); color: #808090; }
+    .settings-test { background: rgba(100,120,255,0.12); border-color: rgba(100,120,255,0.3); color: #b0c0ff; }
+    .settings-status {
+      margin-top: 10px;
+      font-size: 0.75em;
+      color: #708090;
+      min-height: 1.2em;
+    }
+
     /* === 3D 画布 === */
     #canvas3d {
       position: absolute;
@@ -70,7 +162,7 @@
     /* === 材料栏 === */
     .materials-bar {
       position: absolute;
-      bottom: 140px;
+      bottom: 200px;
       left: 50%;
       transform: translateX(-50%);
       display: flex;
@@ -148,7 +240,7 @@
     /* === 模式切换 === */
     .mode-bar {
       position: absolute;
-      bottom: 100px;
+      bottom: 155px;
       left: 50%;
       transform: translateX(-50%);
       display: flex;
@@ -171,6 +263,148 @@
       color: #a0e0c0;
     }
 
+    /* === 序列输入栏 === */
+    .seq-bar {
+      position: absolute;
+      bottom: 100px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: none;
+      gap: 6px;
+      z-index: 10;
+      background: rgba(10, 10, 30, 0.7);
+      padding: 8px 12px;
+      border-radius: 16px;
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.06);
+      width: 90%;
+      max-width: 460px;
+      align-items: center;
+    }
+    .seq-bar input {
+      flex: 1;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px;
+      padding: 6px 10px;
+      color: #e0e0f0;
+      font-size: 0.78em;
+      outline: none;
+      font-family: monospace;
+    }
+    .seq-bar input::placeholder { color: #505060; }
+    .seq-bar .seq-hint {
+      font-size: 0.62em;
+      color: #404060;
+      white-space: nowrap;
+    }
+    .seq-btn {
+      background: rgba(100,120,255,0.2);
+      border: 1px solid rgba(100,120,255,0.3);
+      border-radius: 8px;
+      padding: 6px 12px;
+      color: #b0c0ff;
+      cursor: pointer;
+      font-size: 0.8em;
+      white-space: nowrap;
+    }
+    .seq-btn.stop { background: rgba(200,80,80,0.15); border-color: rgba(200,80,80,0.3); color: #e0a0a0; }
+    .seq-btn.export { background: rgba(80,160,120,0.15); border-color: rgba(80,160,120,0.3); color: #a0e0c0; }
+
+    /* === 序列步骤高亮 === */
+    .seq-steps {
+      position: absolute;
+      bottom: 250px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: none;
+      gap: 4px;
+      z-index: 10;
+      background: rgba(10, 10, 30, 0.7);
+      padding: 6px 10px;
+      border-radius: 12px;
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    .seq-step {
+      width: 24px;
+      height: 24px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.65em;
+      font-family: monospace;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      color: #606080;
+      transition: all 0.2s;
+    }
+    .seq-step.active {
+      background: rgba(100,200,150,0.2);
+      border-color: rgba(100,200,150,0.5);
+      color: #a0e0c0;
+      box-shadow: 0 0 8px rgba(100,200,150,0.3);
+    }
+    .seq-step.done {
+      background: rgba(100,120,255,0.1);
+      border-color: rgba(100,120,255,0.3);
+      color: #8090d0;
+    }
+
+    /* === 预设栏 === */
+    .preset-bar {
+      position: absolute;
+      bottom: 100px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: none;
+      gap: 6px;
+      z-index: 10;
+      background: rgba(10, 10, 30, 0.7);
+      padding: 8px 12px;
+      border-radius: 16px;
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.06);
+    }
+    /* === 自然语言输入 === */
+    .nl-bar {
+      position: absolute;
+      bottom: 100px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: none;
+      gap: 6px;
+      z-index: 10;
+      background: rgba(10, 10, 30, 0.7);
+      padding: 8px 12px;
+      border-radius: 16px;
+      backdrop-filter: blur(8px);
+      border: 1px solid rgba(255,255,255,0.06);
+      width: 80%;
+      max-width: 400px;
+    }
+    .nl-bar input {
+      flex: 1;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 8px;
+      padding: 6px 10px;
+      color: #e0e0f0;
+      font-size: 0.8em;
+      outline: none;
+    }
+    .nl-bar input::placeholder { color: #505060; }
+    .nl-bar button {
+      background: rgba(100,120,255,0.2);
+      border: 1px solid rgba(100,120,255,0.3);
+      border-radius: 8px;
+      padding: 6px 12px;
+      color: #b0c0ff;
+      cursor: pointer;
+      font-size: 0.8em;
+    }
+
     /* === 敲击计数 === */
     .tap-counter {
       position: absolute;
@@ -181,17 +415,116 @@
       z-index: 10;
       pointer-events: none;
     }
+
+    /* === 加载进度 === */
+    .loading-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(10,10,26,0.95);
+      z-index: 200;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 16px;
+    }
+    .loading-overlay.hidden { display: none; }
+    .loading-title {
+      font-size: 1em;
+      color: #8080b0;
+      letter-spacing: 3px;
+    }
+    .loading-sub {
+      font-size: 0.75em;
+      color: #505070;
+      margin-bottom: 8px;
+    }
+    .loading-bar-wrap {
+      width: 240px;
+      height: 3px;
+      background: rgba(255,255,255,0.08);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .loading-bar {
+      height: 100%;
+      background: linear-gradient(90deg, #5060a0, #8090d0);
+      border-radius: 2px;
+      transition: width 0.3s;
+      width: 0%;
+    }
+    .loading-pct {
+      font-size: 0.7em;
+      color: #607080;
+      font-family: monospace;
+    }
+
+    /* === 涟漪动画 === */
+    @keyframes ripple {
+      0% { transform: scale(1); opacity: 0.8; }
+      100% { transform: scale(2.5); opacity: 0; }
+    }
   </style>
 </head>
 <body>
 
   <canvas id="canvas3d"></canvas>
 
+  <!-- 加载遮罩 -->
+  <div class="loading-overlay hidden" id="loadingOverlay">
+    <div class="loading-title">ASMR Sleep Sound</div>
+    <div class="loading-sub">正在生成音频库...</div>
+    <div class="loading-bar-wrap">
+      <div class="loading-bar" id="loadingBar"></div>
+    </div>
+    <div class="loading-pct" id="loadingPct">0%</div>
+  </div>
+
+  <!-- 调试面板 -->
+  <div id="debugPanel" style="position:fixed;bottom:10px;left:10px;background:rgba(0,0,0,0.8);color:#0f0;font-size:11px;padding:8px;border-radius:6px;z-index:999;max-width:400px;max-height:200px;overflow:auto;font-family:monospace;white-space:pre-wrap;">
+    Debug: waiting...
+  </div>
+
+  <!-- 设置按钮 -->
+  <button class="settings-btn" id="settingsBtn" title="API 设置">⚙️</button>
+
+  <!-- 设置弹窗 -->
+  <div class="settings-overlay" id="settingsOverlay">
+    <div class="settings-modal">
+      <h3>⚙️ LLM API 设置</h3>
+      <p class="settings-hint">配置 API 后可用自然语言描述声音编排</p>
+      <div class="settings-field">
+        <label>API Endpoint</label>
+        <input type="text" id="apiEndpoint" placeholder="https://api.example.com/v1/chat/completions">
+      </div>
+      <div class="settings-field">
+        <label>API Key</label>
+        <input type="password" id="apiKey" placeholder="sk-...">
+      </div>
+      <div class="settings-field">
+        <label>Model</label>
+        <input type="text" id="apiModel" placeholder="MiniMax-M2.7（可选）">
+      </div>
+      <div class="settings-actions">
+        <button id="settingsSave" class="settings-save">保存</button>
+        <button id="settingsCancel" class="settings-cancel">取消</button>
+        <button id="settingsTest" class="settings-test">测试连接</button>
+      </div>
+      <div class="settings-status" id="settingsStatus"></div>
+    </div>
+  </div>
+
   <!-- HUD -->
   <div class="hud-top">
     <h1>ASMR Sleep Sound Generator</h1>
     <div class="hint">拖拽旋转 · 点击敲击 · 滚轮缩放</div>
   </div>
+
+  <!-- 状态提示 -->
+  <div class="tap-hint" id="tapHint" style="position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);color:#404060;font-size:1em;letter-spacing:3px;pointer-events:none;z-index:1;">轻触任意位置开始</div>
+
+  <!-- 状态栏 -->
+  <div class="status-bar" id="statusBar" style="position:absolute;top:80px;left:0;right:0;text-align:center;font-size:0.7em;color:#505070;letter-spacing:1px;pointer-events:none;z-index:10;"></div>
 
   <!-- 区域信息 -->
   <div class="region-info" id="regionInfo">
@@ -205,10 +538,39 @@
   <!-- 材料栏 -->
   <div class="materials-bar" id="materialsBar"></div>
 
+  <!-- 序列步骤高亮 -->
+  <div class="seq-steps" id="seqSteps"></div>
+
   <!-- 模式切换 -->
   <div class="mode-bar">
     <button class="mode-btn active" data-mode="manual">手动</button>
     <button class="mode-btn" data-mode="random">随机</button>
+    <button class="mode-btn" data-mode="preset">预设</button>
+    <button class="mode-btn" data-mode="seq">序列</button>
+  </div>
+
+  <!-- 预设栏（预设模式时显示）-->
+  <div class="preset-bar" id="presetBar">
+    <button class="mat-btn" data-preset="sleep">😴 助眠</button>
+    <button class="mat-btn" data-preset="study">📖 学习</button>
+    <button class="mat-btn" data-preset="exercise">💪 运动</button>
+    <button class="mat-btn" data-preset="focus">🎯 专注</button>
+    <button class="mat-btn" data-preset="anxiety">🧘 平静</button>
+    <button class="mat-btn" data-preset="stop">⏹ 停止</button>
+  </div>
+
+  <!-- 自然语言输入 -->
+  <div class="nl-bar" id="nlBar">
+    <input type="text" id="nlInput" placeholder="描述你想要的声音，如：轻柔的后脑勺木头敲击..." autocomplete="off">
+    <button id="nlPlay">▶</button>
+  </div>
+
+  <!-- 序列输入 -->
+  <div class="seq-bar" id="seqBar">
+    <input type="text" id="seqInput" placeholder="1,2,3,4,5  或  f_w_0,e_m_1,b_g_2" value="1,2,3,4,5">
+    <button class="seq-btn" id="seqPlayBtn">▶ 播放</button>
+    <button class="seq-btn stop" id="seqStopBtn">■ 停止</button>
+    <button class="seq-btn export" id="seqExportBtn">导出WAV</button>
   </div>
 
   <!-- 底部控制 -->
@@ -230,13 +592,20 @@
     </div>
   </div>
 
-  <!-- 引擎 -->
+  <!-- 引擎（非 module）-->
   <script src="engine/presets.js"></script>
   <script src="engine/regions.js"></script>
   <script src="engine/material.js"></script>
   <script src="engine/rhythm.js"></script>
+  <script src="engine/clip-library.js"></script>
+  <script src="engine/preset-manager.js"></script>
+  <script src="engine/orchestrator.js"></script>
+  <script src="engine/llm-parser.js"></script>
+  <script src="engine/audio-library.js"></script>
+  <script src="engine/sequencer.js"></script>
+  <script src="engine/audio-exporter.js"></script>
 
-  <!-- importmap: 让裸模块 'three' 指向本地文件 -->
+  <!-- importmap: three.js + OrbitControls -->
   <script type="importmap">
   {
     "imports": {
@@ -245,9 +614,25 @@
   }
   </script>
 
+  <script>
+    // 全局错误捕获
+    window.__errors = [];
+    window.addEventListener('error', (e) => { window.__errors.push(e.message + ' @ ' + e.filename + ':' + e.lineno); });
+    window.addEventListener('unhandledrejection', (e) => { window.__errors.push('Promise: ' + e.reason); });
+  </script>
   <script type="module">
     import * as THREE from './lib/three.module.js';
     import { OrbitControls } from './lib/OrbitControls.js';
+    import { GLTFLoader } from './lib/GLTFLoader.js';
+    window.__ASMR_DEBUG = { loaded: false, errors: [], logs: [] };
+    const _debugPanel = document.getElementById('debugPanel');
+    const _origConsoleLog = console.log;
+    const _origConsoleError = console.error;
+    const _origConsoleWarn = console.warn;
+    console.log = (...args) => { _origConsoleLog(...args); window.__ASMR_DEBUG.logs.push('[L] ' + args.join(' ')); if(_debugPanel) _debugPanel.textContent = window.__ASMR_DEBUG.logs.slice(-15).join('\n'); };
+    console.error = (...args) => { _origConsoleError(...args); window.__ASMR_DEBUG.logs.push('[E] ' + args.join(' ')); if(_debugPanel) _debugPanel.textContent = window.__ASMR_DEBUG.logs.slice(-15).join('\n'); };
+    console.warn = (...args) => { _origConsoleWarn(...args); window.__ASMR_DEBUG.logs.push('[W] ' + args.join(' ')); if(_debugPanel) _debugPanel.textContent = window.__ASMR_DEBUG.logs.slice(-15).join('\n'); };
+    console.log('[Module] ES module script starting...');
 
     // ==================== 状态 ====================
     const state = {
@@ -256,126 +641,331 @@
       velocity: 0.7,
       bpm: 50,
       tapCount: 0,
-      hoveredRegion: null
+      hoveredRegion: null,
+      modelLoaded: false,
+      audioReady: false
     };
 
+    // ==================== 全局引擎实例 ====================
     const synth = new MaterialSynth();
     const rhythm = new RhythmEngine();
+    const llmParser = new LLMParser();
 
-    // ==================== Three.js 场景 ====================
-    const canvas = document.getElementById('canvas3d');
-    const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
-    renderer.setSize(window.innerWidth, window.innerHeight);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-    renderer.toneMapping = THREE.ACESFilmicToneMapping;
+    // AudioLibrary 实例（等待初始化）
+    let audioLibrary = null;
+    let sequencer = null;
+    let audioExporter = null;
 
-    const scene = new THREE.Scene();
-    scene.background = new THREE.Color(0x0a0a1a);
+    // 3D 场景引用
+    let scene, camera, renderer, controls;
+    let headGroup = null;
+    let headMesh = null;       // 用于射线检测的主要 mesh
+    let tapMarkers = [];
 
-    const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 100);
-    camera.position.set(0, 0.3, 3);
+    // ==================== Three.js 场景初始化 ====================
+    function initThree() {
+      const canvas = document.getElementById('canvas3d');
 
-    const controls = new OrbitControls(camera, canvas);
-    controls.enableDamping = true;
-    controls.dampingFactor = 0.08;
-    controls.minDistance = 1.5;
-    controls.maxDistance = 6;
-    controls.enablePan = false;
+      renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+      renderer.setSize(window.innerWidth, window.innerHeight);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.toneMapping = THREE.ACESFilmicToneMapping;
+      renderer.outputColorSpace = THREE.SRGBColorSpace;
 
-    // ==================== 灯光 ====================
-    const ambientLight = new THREE.AmbientLight(0x404060, 0.6);
-    scene.add(ambientLight);
+      scene = new THREE.Scene();
+      scene.background = new THREE.Color(0x0d0d1a);
+      scene.fog = new THREE.Fog(0x0d0d1a, 8, 20);
 
-    const mainLight = new THREE.DirectionalLight(0xffffff, 0.8);
-    mainLight.position.set(2, 3, 4);
-    scene.add(mainLight);
+      camera = new THREE.PerspectiveCamera(45, window.innerWidth / window.innerHeight, 0.1, 100);
+      camera.position.set(0, 0.2, 3.5);
 
-    const fillLight = new THREE.DirectionalLight(0x6080ff, 0.3);
-    fillLight.position.set(-2, 1, -2);
-    scene.add(fillLight);
+      controls = new OrbitControls(camera, canvas);
+      controls.enableDamping = true;
+      controls.dampingFactor = 0.08;
+      controls.minDistance = 1.5;
+      controls.maxDistance = 6;
+      controls.enablePan = false;
+      controls.target.set(0, 0.1, 0);
 
-    // ==================== 头部模型 ====================
-    // 用参数化几何体构建头部（MVP 阶段）
-    // 后续可替换为 GLB 模型
+      // 三灯布光
+      const ambientLight = new THREE.AmbientLight(0x404060, 0.4);
+      scene.add(ambientLight);
 
-    const headGroup = new THREE.Group();
-    scene.add(headGroup);
+      // 暖色主光（右上方）
+      const mainLight = new THREE.DirectionalLight(0xffeedd, 0.9);
+      mainLight.position.set(2, 3, 4);
+      scene.add(mainLight);
 
-    // 头部主体（椭球体）
-    const headGeo = new THREE.SphereGeometry(1, 64, 48);
-    headGeo.scale(0.85, 1.0, 0.9); // 略微椭圆
-    const headMat = new THREE.MeshStandardMaterial({
-      color: 0xd4a574,
-      roughness: 0.7,
-      metalness: 0.05,
-    });
-    const headMesh = new THREE.Mesh(headGeo, headMat);
-    headGroup.add(headMesh);
+      // 冷色补光（左侧）
+      const fillLight = new THREE.DirectionalLight(0x8090ff, 0.35);
+      fillLight.position.set(-3, 1, -1);
+      scene.add(fillLight);
 
-    // 区域高亮层（半透明，悬停时显示）
-    const highlightGeo = new THREE.SphereGeometry(1.005, 64, 48);
-    highlightGeo.scale(0.85, 1.0, 0.9);
-    const highlightMat = new THREE.MeshBasicMaterial({
-      color: 0x6080ff,
-      transparent: true,
-      opacity: 0,
-      depthWrite: false,
-    });
-    const highlightMesh = new THREE.Mesh(highlightGeo, highlightMat);
-    headGroup.add(highlightMesh);
+      // 轮廓光（背后）
+      const rimLight = new THREE.DirectionalLight(0xffffff, 0.25);
+      rimLight.position.set(0, 2, -3);
+      scene.add(rimLight);
 
-    // 耳朵（简单椭球）
-    const earGeo = new THREE.SphereGeometry(0.18, 16, 12);
-    earGeo.scale(0.5, 1.2, 0.8);
-    const earMat = new THREE.MeshStandardMaterial({ color: 0xc49064, roughness: 0.8 });
-    
-    const earL = new THREE.Mesh(earGeo, earMat);
-    earL.position.set(-0.85, 0.1, 0);
-    earL.rotation.z = 0.2;
-    headGroup.add(earL);
-    
-    const earR = new THREE.Mesh(earGeo, earMat);
-    earR.position.set(0.85, 0.1, 0);
-    earR.rotation.z = -0.2;
-    headGroup.add(earR);
+      // 半球光
+      const hemiLight = new THREE.HemisphereLight(0xaabbff, 0x443322, 0.3);
+      scene.add(hemiLight);
 
-    // 鼻子
-    const noseGeo = new THREE.ConeGeometry(0.08, 0.25, 8);
-    noseGeo.rotateX(-Math.PI / 2);
-    const noseMat = new THREE.MeshStandardMaterial({ color: 0xc49064, roughness: 0.8 });
-    const nose = new THREE.Mesh(noseGeo, noseMat);
-    nose.position.set(0, -0.05, 0.88);
-    headGroup.add(nose);
+      headGroup = new THREE.Group();
+      scene.add(headGroup);
 
-    // 眼睛（半球）
-    const eyeGeo = new THREE.SphereGeometry(0.08, 16, 8);
-    const eyeMat = new THREE.MeshStandardMaterial({ color: 0x2a2a3a, roughness: 0.3 });
-    const eyeL = new THREE.Mesh(eyeGeo, eyeMat);
-    eyeL.position.set(-0.25, 0.2, 0.82);
-    headGroup.add(eyeL);
-    const eyeR = new THREE.Mesh(eyeGeo, eyeMat);
-    eyeR.position.set(0.25, 0.2, 0.82);
-    headGroup.add(eyeR);
+      window.addEventListener('resize', () => {
+        camera.aspect = window.innerWidth / window.innerHeight;
+        camera.updateProjectionMatrix();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+      });
+    }
 
-    // ==================== 敲击点标记 ====================
-    const tapMarkers = [];
+    // ==================== 加载 GLTF 头部模型 ====================
+    async function loadHeadModel() {
+      return new Promise((resolve, reject) => {
+        const loader = new GLTFLoader();
+        loader.load(
+          './assets/male_bust.glb',
+          (gltf) => {
+            const model = gltf.scene;
+
+            // 自动居中 + 缩放
+            const box = new THREE.Box3().setFromObject(model);
+            const center = box.getCenter(new THREE.Vector3());
+            const size = box.getSize(new THREE.Vector3());
+            const maxDim = Math.max(size.x, size.y, size.z);
+            const scale = 2.0 / maxDim; // 缩放到约 2 单位直径
+
+            model.position.sub(center);
+            model.position.y += size.y * scale * 0.1; // 稍微上移
+            model.scale.setScalar(scale);
+
+            // 存储原始缩放后的尺寸信息用于射线检测
+            model.userData.scale = scale;
+            model.userData.originalSize = size;
+
+            // 应用皮肤材质
+            model.traverse((child) => {
+              if (child.isMesh) {
+                child.castShadow = false;
+                // 如果模型已有材质，保留；否则用默认皮肤
+                if (!child.material || child.material.color?.getHex() === 0xffffff) {
+                  child.material = new THREE.MeshPhysicalMaterial({
+                    color: 0xe8c4a0,
+                    roughness: 0.65,
+                    metalness: 0.0,
+                    clearcoat: 0.1,
+                    clearcoatRoughness: 0.8,
+                    sheen: 0.3,
+                    sheenRoughness: 0.5,
+                    sheenColor: new THREE.Color(0xffccaa),
+                  });
+                }
+              }
+            });
+
+            headGroup.add(model);
+            headMesh = model; // 整组作为射线检测目标
+
+            state.modelLoaded = true;
+            console.log('[3D] Head model loaded, scale:', scale, 'headMesh:', !!headMesh, 'children:', headGroup.children.length);
+            resolve(model);
+          },
+          (progress) => {
+            console.log('[3D] Loading model:', (progress.loaded / progress.total * 100).toFixed(0) + '%');
+          },
+          (err) => {
+            console.error('[3D] Model load error:', err);
+            // 降级：创建参数化头部
+            createParametricHead();
+            resolve(null);
+          }
+        );
+      });
+    }
+
+    // ==================== 降级：参数化头部 ====================
+    function createParametricHead() {
+      const headGeo = new THREE.SphereGeometry(1, 128, 96);
+      headGeo.scale(0.78, 0.95, 0.82);
+
+      const posAttr = headGeo.getAttribute('position');
+      for (let i = 0; i < posAttr.count; i++) {
+        let x = posAttr.getX(i);
+        let y = posAttr.getY(i);
+        let z = posAttr.getZ(i);
+        if (y < -0.3) {
+          const factor = 1.0 - Math.max(0, (-y - 0.3) * 0.4);
+          x *= factor; z *= factor;
+        }
+        if (y > 0.3 && z > 0.3) { y += 0.05; }
+        posAttr.setXYZ(i, x, y, z);
+      }
+      posAttr.needsUpdate = true;
+      headGeo.computeVertexNormals();
+
+      const headMat = new THREE.MeshPhysicalMaterial({
+        color: 0xe8c4a0,
+        roughness: 0.65,
+        metalness: 0.0,
+        clearcoat: 0.1,
+        clearcoatRoughness: 0.8,
+        sheen: 0.3,
+        sheenRoughness: 0.5,
+        sheenColor: new THREE.Color(0xffccaa),
+      });
+
+      const mesh = new THREE.Mesh(headGeo, headMat);
+      mesh.userData.scale = 1.0;
+      mesh.userData.originalSize = new THREE.Vector3(1.56, 1.9, 1.64);
+      headGroup.add(mesh);
+      headMesh = mesh;
+      console.log('[3D] Fallback parametric head created');
+
+      // 耳朵
+      const earGeo = new THREE.SphereGeometry(0.14, 24, 16);
+      earGeo.scale(0.35, 1.0, 0.7);
+      const earMat = new THREE.MeshPhysicalMaterial({ color: 0xd4a080, roughness: 0.7, sheen: 0.2, sheenColor: new THREE.Color(0xffb090) });
+      [-1, 1].forEach(side => {
+        const ear = new THREE.Mesh(earGeo, earMat);
+        ear.position.set(side * 0.76, 0.05, 0);
+        ear.rotation.z = side * 0.15;
+        ear.rotation.y = side * -0.3;
+        headGroup.add(ear);
+      });
+
+      // 鼻子
+      const noseGeo = new THREE.SphereGeometry(0.06, 16, 12);
+      noseGeo.scale(0.8, 1.2, 1.0);
+      const noseMesh = new THREE.Mesh(noseGeo, headMat);
+      noseMesh.position.set(0, -0.05, 0.80);
+      headGroup.add(noseMesh);
+
+      // 眼睛
+      const eyeWhiteGeo = new THREE.SphereGeometry(0.065, 16, 12);
+      const eyeWhiteMat = new THREE.MeshPhysicalMaterial({ color: 0xf0f0f0, roughness: 0.3, clearcoat: 0.5 });
+      const eyeGeo = new THREE.SphereGeometry(0.035, 16, 12);
+      const eyeMat = new THREE.MeshPhysicalMaterial({ color: 0x2a1a0a, roughness: 0.2, clearcoat: 0.8 });
+      const pupilGeo = new THREE.SphereGeometry(0.018, 12, 8);
+      const pupilMat = new THREE.MeshPhysicalMaterial({ color: 0x000000, roughness: 0.1, clearcoat: 1.0 });
+
+      [-1, 1].forEach(side => {
+        const eyeWhite = new THREE.Mesh(eyeWhiteGeo, eyeWhiteMat);
+        eyeWhite.position.set(side * 0.24, 0.15, 0.73);
+        headGroup.add(eyeWhite);
+        const iris = new THREE.Mesh(eyeGeo, eyeMat);
+        iris.position.set(side * 0.24, 0.15, 0.77);
+        headGroup.add(iris);
+        const pupil = new THREE.Mesh(pupilGeo, pupilMat);
+        pupil.position.set(side * 0.24, 0.15, 0.78);
+        headGroup.add(pupil);
+      });
+
+      // 嘴唇
+      const lipGeo = new THREE.TorusGeometry(0.08, 0.015, 8, 16, Math.PI);
+      const lipMat = new THREE.MeshPhysicalMaterial({ color: 0xc08070, roughness: 0.5 });
+      const lip = new THREE.Mesh(lipGeo, lipMat);
+      lip.position.set(0, -0.22, 0.74);
+      lip.rotation.x = 0.1;
+      headGroup.add(lip);
+
+      // 眉毛
+      const browGeo = new THREE.BoxGeometry(0.12, 0.015, 0.02);
+      const browMat = new THREE.MeshStandardMaterial({ color: 0x3a2a1a, roughness: 0.8 });
+      [-1, 1].forEach(side => {
+        const brow = new THREE.Mesh(browGeo, browMat);
+        brow.position.set(side * 0.22, 0.30, 0.76);
+        brow.rotation.z = side * 0.1;
+        headGroup.add(brow);
+      });
+
+      state.modelLoaded = true;
+      console.log('[3D] Fallback parametric head created');
+    }
+
+    // ==================== 音频库初始化 ====================
+    async function initAudioLibrary() {
+      const loadingOverlay = document.getElementById('loadingOverlay');
+      const loadingBar = document.getElementById('loadingBar');
+      const loadingPct = document.getElementById('loadingPct');
+
+      loadingOverlay.classList.remove('hidden');
+
+      audioLibrary = new AudioLibrary();
+      audioExporter = new AudioExporter();
+
+      await audioLibrary.init(
+        synth.audioCtx,
+        HEAD_REGIONS,
+        MATERIAL_PRESETS,
+        (current, total) => {
+          const pct = Math.round(current / total * 100);
+          loadingBar.style.width = pct + '%';
+          loadingPct.textContent = pct + '%';
+        }
+      );
+
+      // 初始化 sequencer
+      sequencer = new Sequencer(audioLibrary);
+      sequencer.setAudioCtx(synth.audioCtx);
+
+      sequencer.on('step', ({ index, total, clipId }) => {
+        updateSeqSteps(index, total);
+        const entry = audioLibrary.clipIndex.find(c => c.id === clipId);
+        if (entry) {
+          const region = HEAD_REGIONS[entry.region];
+          const pos = getSpherePoint(entry.region);
+          addTapMarker(pos, new THREE.Color(region.color));
+        }
+      });
+
+      sequencer.on('complete', () => {
+        document.getElementById('tapHint').textContent = '序列播放完毕';
+        clearSeqSteps();
+      });
+
+      state.audioReady = true;
+
+      // 淡出加载遮罩
+      loadingOverlay.style.transition = 'opacity 0.5s';
+      loadingOverlay.style.opacity = '0';
+      setTimeout(() => {
+        loadingOverlay.classList.add('hidden');
+        document.getElementById('tapHint').textContent = '轻触敲击';
+      }, 500);
+    }
+
+    // ==================== 根据区域获取球面随机点 ====================
+    function getSpherePoint(regionKey) {
+      const r = 1.0;
+      const region = HEAD_REGIONS[regionKey];
+      // 使用区域的 stereoBias 和 verticalBias 约束
+      const pan = region.stereoBias;
+      const vBias = region.verticalBias;
+      const theta = pan * Math.PI * 0.4;
+      const phi = Math.acos(Math.max(-1, Math.min(1, vBias)));
+      return new THREE.Vector3(
+        r * Math.sin(phi) * Math.sin(theta),
+        r * Math.cos(phi),
+        r * Math.sin(phi) * Math.cos(theta)
+      );
+    }
+
+    // ==================== 敲击标记 ====================
     const markerGeo = new THREE.SphereGeometry(0.03, 12, 8);
 
     function addTapMarker(position, color) {
       const mat = new THREE.MeshBasicMaterial({ color, transparent: true, opacity: 0.8 });
       const marker = new THREE.Mesh(markerGeo, mat);
-      marker.position.copy(position);
-      // 稍微抬离表面
-      marker.position.multiplyScalar(1.01);
-      headGroup.add(marker);
+      marker.position.copy(position).multiplyScalar(1.02);
+      if (headGroup) headGroup.add(marker);
       tapMarkers.push(marker);
 
-      // 淡出动画
       const startTime = performance.now();
       function fadeOut() {
         const elapsed = (performance.now() - startTime) / 2000;
         if (elapsed >= 1) {
-          headGroup.remove(marker);
+          if (headGroup) headGroup.remove(marker);
           const idx = tapMarkers.indexOf(marker);
           if (idx >= 0) tapMarkers.splice(idx, 1);
           return;
@@ -387,87 +977,145 @@
       fadeOut();
     }
 
+    // ==================== 涟漪动画（点击位置）====================
+    function addRipple(event) {
+      const x = event.clientX;
+      const y = event.clientY;
+      const ripple = document.createElement('div');
+      ripple.style.cssText = `
+        position: fixed; left: ${x}px; top: ${y}px;
+        width: 40px; height: 40px; border-radius: 50%;
+        border: 2px solid rgba(100,200,150,0.6);
+        transform: translate(-50%,-50%);
+        pointer-events: none; z-index: 50;
+        animation: ripple 0.6s ease-out forwards;
+      `;
+      document.body.appendChild(ripple);
+      setTimeout(() => ripple.remove(), 600);
+    }
+
     // ==================== 射线检测 ====================
     const raycaster = new THREE.Raycaster();
     const mouse = new THREE.Vector2();
 
     function getIntersection(event) {
-      const rect = canvas.getBoundingClientRect();
+      const rect = renderer.domElement.getBoundingClientRect();
       mouse.x = ((event.clientX - rect.left) / rect.width) * 2 - 1;
       mouse.y = -((event.clientY - rect.top) / rect.height) * 2 + 1;
       raycaster.setFromCamera(mouse, camera);
-      return raycaster.intersectObject(headMesh);
+      if (!headMesh) return [];
+      return raycaster.intersectObject(headMesh, true);
     }
 
     // ==================== 事件处理 ====================
     let isPointerDown = false;
     let pointerMoved = false;
+    let dragStarted = false;
 
-    canvas.addEventListener('pointerdown', (e) => {
+    let pointerDownX = 0, pointerDownY = 0;
+
+    document.getElementById('canvas3d').addEventListener('pointerdown', (e) => {
       isPointerDown = true;
       pointerMoved = false;
+      dragStarted = false;
+      pointerDownX = e.clientX;
+      pointerDownY = e.clientY;
     });
 
-    canvas.addEventListener('pointermove', (e) => {
+    document.getElementById('canvas3d').addEventListener('pointermove', (e) => {
+      if (isPointerDown) {
+        const dx = e.clientX - pointerDownX;
+        const dy = e.clientY - pointerDownY;
+        if (Math.sqrt(dx*dx + dy*dy) > 5) dragStarted = true;
+      }
       pointerMoved = true;
-      
-      // 悬停显示区域
+
       const hits = getIntersection(e);
       const regionInfo = document.getElementById('regionInfo');
       const regionName = document.getElementById('regionName');
       const regionDesc = document.getElementById('regionDesc');
-      
+
       if (hits.length > 0) {
-        const regionKey = getRegionFromPosition(hits[0].point);
+        const pt = hits[0].point.clone();
+        // 如果模型有缩放，反算到原始空间
+        if (headMesh && headMesh.userData.scale) {
+          pt.divideScalar(headMesh.userData.scale);
+        }
+        const regionKey = getRegionFromPosition(pt);
         const region = HEAD_REGIONS[regionKey];
-        
+
         if (state.hoveredRegion !== regionKey) {
           state.hoveredRegion = regionKey;
           regionName.textContent = `${region.emoji} ${region.name}`;
           regionDesc.textContent = region.description;
-          highlightMat.color.set(region.color);
         }
-        
-        highlightMat.opacity = 0.15;
+
+        // 高亮 emissive
+        if (hits[0].object?.material?.emissive) {
+          hits[0].object.material.emissive = new THREE.Color(region.color);
+          hits[0].object.material.emissiveIntensity = 0.15;
+        }
         regionInfo.classList.add('visible');
       } else {
         state.hoveredRegion = null;
-        highlightMat.opacity = 0;
+        headGroup?.traverse((child) => {
+          if (child.isMesh && child.material?.emissive) {
+            child.material.emissiveIntensity = 0;
+          }
+        });
         regionInfo.classList.remove('visible');
       }
     });
 
-    canvas.addEventListener('pointerup', async (e) => {
+    document.getElementById('canvas3d').addEventListener('pointerup', async (e) => {
       if (!isPointerDown) return;
       isPointerDown = false;
-      
-      // 忽略拖拽旋转
-      if (pointerMoved && controls.isDragging) return;
 
+      // 忽略拖拽旋转
+      if (dragStarted) return;
+
+      addRipple(e);
       await initAudio();
+      console.log('[Click] initAudio done. synth.init:', synth.isInitialized, 'ctx.state:', synth.audioCtx?.state);
 
       const hits = getIntersection(e);
+      console.log('[Click] hits:', hits.length, 'mode:', state.mode, 'headMesh:', !!headMesh, 'synth.init:', synth.isInitialized);
+
+      // 测试音：无论是否命中模型，都播放一个测试音
+      if (synth.isInitialized) {
+        const ctx = synth.audioCtx;
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.frequency.value = 440;
+        gain.gain.setValueAtTime(0.3, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.5);
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start();
+        osc.stop(ctx.currentTime + 0.5);
+        console.log('[Test] Playing test tone 440Hz');
+      }
+
       if (hits.length > 0 && state.mode === 'manual') {
-        const point = hits[0].point;
+        const point = hits[0].point.clone();
+        if (headMesh && headMesh.userData.scale) {
+          point.divideScalar(headMesh.userData.scale);
+        }
+
         const regionKey = getRegionFromPosition(point);
         const region = HEAD_REGIONS[regionKey];
-        
-        // 立体声：基于 x 位置
         const stereoPan = point.x * 0.8;
-        
-        // 播放声音
+
         synth.play(state.material, state.velocity, region, stereoPan);
-        
-        // 视觉反馈
+
         const regionColor = new THREE.Color(region.color);
         addTapMarker(point, regionColor);
-        
+
         state.tapCount++;
         updateTapCounter();
-        
-        // 更新区域信息
+
         document.getElementById('regionName').textContent = `${region.emoji} ${region.name}`;
-        document.getElementById('regionDesc').textContent = 
+        document.getElementById('regionDesc').textContent =
           `${region.description} · 第 ${state.tapCount} 次`;
       }
     });
@@ -482,14 +1130,13 @@
           <span>${m.name}</span>
         </button>
       `).join('');
-      
+
       bar.querySelectorAll('.mat-btn').forEach(btn => {
         btn.addEventListener('click', async () => {
           await initAudio();
           state.material = btn.dataset.mat;
           renderMaterials();
-          synth.play(state.material, 0.5, 
-            HEAD_REGIONS.forehead, 0);
+          synth.play(state.material, 0.5, HEAD_REGIONS.forehead, 0);
         });
       });
     }
@@ -502,40 +1149,254 @@
         document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
         btn.classList.add('active');
 
-        const bpmRow = document.getElementById('bpmRow');
-        const velocityRow = document.getElementById('velocityRow');
+        hideAllSubPanels();
 
-        if (state.mode === 'random') {
-          bpmRow.style.display = 'flex';
-          velocityRow.style.display = 'none';
+        if (state.mode === 'manual') {
+          document.getElementById('velocityRow').style.display = 'flex';
+          document.getElementById('tapHint').textContent = '轻触敲击';
+          rhythm.stop();
+          sequencer?.stop();
+        } else if (state.mode === 'random') {
+          document.getElementById('bpmRow').style.display = 'flex';
           rhythm.setMode('random');
           rhythm.setBPM(state.bpm);
-          rhythm.startRandom((vel, pos) => {
-            // 随机选择一个区域
+          rhythm.startRandom((vel) => {
             const regionKeys = Object.keys(HEAD_REGIONS);
             const regionKey = regionKeys[Math.floor(Math.random() * regionKeys.length)];
             const region = HEAD_REGIONS[regionKey];
-            synth.play(state.material, vel, region, (Math.random()-0.5)*1.6);
-            
-            // 随机位置标记
-            const theta = Math.random() * Math.PI * 2;
-            const phi = Math.acos(Math.random() * 2 - 1);
-            const r = 0.85;
-            addTapMarker(new THREE.Vector3(
-              r * Math.sin(phi) * Math.cos(theta),
-              r * Math.cos(phi),
-              r * Math.sin(phi) * Math.sin(theta)
-            ), new THREE.Color(region.color));
-            
+            synth.play(state.material, vel, region, (Math.random() - 0.5) * 1.6);
+            const pos = getSpherePoint(regionKey);
+            addTapMarker(pos, new THREE.Color(region.color));
             state.tapCount++;
             updateTapCounter();
           });
-        } else {
-          bpmRow.style.display = 'none';
-          velocityRow.style.display = 'flex';
+          document.getElementById('tapHint').textContent = '随机播放中';
+        } else if (state.mode === 'preset') {
+          document.getElementById('presetBar').style.display = 'flex';
+          document.getElementById('nlBar').style.display = 'flex';
+          document.getElementById('materialsBar').style.display = 'none';
           rhythm.stop();
+          sequencer?.stop();
+          document.getElementById('tapHint').textContent = '选择预设或输入描述';
+        } else if (state.mode === 'seq') {
+          document.getElementById('seqBar').style.display = 'flex';
+          document.getElementById('seqSteps').style.display = 'flex';
+          rhythm.stop();
+          document.getElementById('tapHint').textContent = '输入序列并播放';
+          // 懒加载音频库
+          if (!audioLibrary?.isReady) {
+            document.getElementById('tapHint').textContent = '正在生成音频库...';
+            await ensureAudioLibrary();
+            document.getElementById('tapHint').textContent = '音频库就绪！输入序列并播放';
+          }
+          renderSeqSteps();
         }
       });
+    });
+
+    function hideAllSubPanels() {
+      document.getElementById('bpmRow').style.display = 'none';
+      document.getElementById('velocityRow').style.display = 'none';
+      document.getElementById('presetBar').style.display = 'none';
+      document.getElementById('nlBar').style.display = 'none';
+      document.getElementById('seqBar').style.display = 'none';
+      document.getElementById('seqSteps').style.display = 'none';
+      document.getElementById('materialsBar').style.display = 'flex';
+      rhythm.stop();
+      sequencer?.stop();
+    }
+
+    // ==================== 序列步骤高亮 ====================
+    function renderSeqSteps() {
+      const input = document.getElementById('seqInput').value;
+      if (!sequencer || !audioLibrary) return;
+      const ids = sequencer._parseInput(input);
+      const container = document.getElementById('seqSteps');
+      container.innerHTML = ids.map((id, i) =>
+        `<div class="seq-step" data-idx="${i}">${i + 1}</div>`
+      ).join('');
+    }
+
+    function updateSeqSteps(current, total) {
+      document.querySelectorAll('.seq-step').forEach((el, i) => {
+        el.classList.remove('active', 'done');
+        if (i < current) el.classList.add('done');
+        if (i === current) el.classList.add('active');
+      });
+    }
+
+    function clearSeqSteps() {
+      document.querySelectorAll('.seq-step').forEach(el => {
+        el.classList.remove('active', 'done');
+      });
+    }
+
+    // ==================== 序列播放 ====================
+    document.getElementById('seqPlayBtn').addEventListener('click', async () => {
+      await initAudio();
+      if (!audioLibrary?.isReady) {
+        document.getElementById('tapHint').textContent = '正在生成音频库...';
+        await ensureAudioLibrary();
+      }
+      const input = document.getElementById('seqInput').value.trim();
+      if (!input) return;
+      renderSeqSteps();
+      try {
+        await sequencer.play(input, { gap: 0.15, loop: false });
+      } catch (e) {
+        document.getElementById('tapHint').textContent = '错误：' + e.message;
+      }
+    });
+
+    document.getElementById('seqStopBtn').addEventListener('click', () => {
+      sequencer?.stop();
+      clearSeqSteps();
+      document.getElementById('tapHint').textContent = '已停止';
+    });
+
+    document.getElementById('seqExportBtn').addEventListener('click', async () => {
+      await initAudio();
+      if (!audioLibrary?.isReady) {
+        document.getElementById('tapHint').textContent = '正在生成音频库...';
+        await ensureAudioLibrary();
+      }
+      const input = document.getElementById('seqInput').value.trim();
+      if (!input) return;
+      document.getElementById('tapHint').textContent = '正在渲染 WAV...';
+      try {
+        const ids = sequencer._parseInput(input);
+        const blob = await audioExporter.renderByIds(audioLibrary, ids, { gap: 0.15 });
+        audioExporter.download(blob, 'asmr-sequence.wav');
+        document.getElementById('tapHint').textContent = 'WAV 已下载';
+      } catch (e) {
+        document.getElementById('tapHint').textContent = '导出错误：' + e.message;
+      }
+    });
+
+    document.getElementById('seqInput').addEventListener('input', () => {
+      if (audioLibrary?.isReady) renderSeqSteps();
+    });
+
+    // ==================== 预设按钮 ====================
+    const orchestrator = new Orchestrator(synth, { HEAD_REGIONS, getRegionFromPosition });
+
+    orchestrator.on('clipPlay', ({ material, region }) => {
+      const pos = getSpherePoint(region);
+      const regionColor = new THREE.Color(HEAD_REGIONS[region]?.color || '#ffffff');
+      addTapMarker(pos, regionColor);
+    });
+
+    document.querySelectorAll('[data-preset]').forEach(btn => {
+      btn.addEventListener('click', async () => {
+        await initAudio();
+        const presetId = btn.dataset.preset;
+        if (presetId === 'stop') {
+          orchestrator.stop();
+          document.getElementById('tapHint').textContent = '已停止';
+          return;
+        }
+        orchestrator.playPreset(presetId);
+        const preset = orchestrator.presetManager.get(presetId);
+        document.getElementById('tapHint').textContent = preset ? `播放中：${preset.name}` : '播放中';
+      });
+    });
+
+    // ==================== 设置弹窗 ====================
+    const settingsBtn = document.getElementById('settingsBtn');
+    const settingsOverlay = document.getElementById('settingsOverlay');
+    const settingsSave = document.getElementById('settingsSave');
+    const settingsCancel = document.getElementById('settingsCancel');
+    const settingsTest = document.getElementById('settingsTest');
+    const settingsStatus = document.getElementById('settingsStatus');
+
+    function openSettings() {
+      const cfg = llmParser.config;
+      document.getElementById('apiEndpoint').value = cfg.endpoint || '';
+      document.getElementById('apiKey').value = cfg.apiKey || '';
+      document.getElementById('apiModel').value = cfg.model || '';
+      settingsStatus.textContent = '';
+      settingsOverlay.style.display = 'flex';
+    }
+    function closeSettings() {
+      settingsOverlay.style.display = 'none';
+    }
+
+    settingsBtn.addEventListener('click', openSettings);
+    settingsCancel.addEventListener('click', closeSettings);
+    settingsOverlay.addEventListener('click', (e) => {
+      if (e.target === settingsOverlay) closeSettings();
+    });
+
+    settingsSave.addEventListener('click', () => {
+      llmParser.saveConfig({
+        endpoint: document.getElementById('apiEndpoint').value.trim(),
+        apiKey: document.getElementById('apiKey').value.trim(),
+        model: document.getElementById('apiModel').value.trim()
+      });
+      settingsStatus.textContent = '✅ 已保存';
+      settingsStatus.style.color = '#a0e0c0';
+      setTimeout(closeSettings, 800);
+    });
+
+    settingsTest.addEventListener('click', async () => {
+      settingsStatus.textContent = '测试中...';
+      settingsStatus.style.color = '#708090';
+      llmParser.saveConfig({
+        endpoint: document.getElementById('apiEndpoint').value.trim(),
+        apiKey: document.getElementById('apiKey').value.trim(),
+        model: document.getElementById('apiModel').value.trim()
+      });
+      try {
+        const result = await llmParser.parse('测试：轻柔的木头敲击后脑勺');
+        settingsStatus.textContent = `✅ 连接成功！解析到 ${result.clips?.length || 0} 个片段`;
+        settingsStatus.style.color = '#a0e0c0';
+      } catch (e) {
+        settingsStatus.textContent = `❌ ${e.message}`;
+        settingsStatus.style.color = '#ff8080';
+      }
+    });
+
+    // ==================== 自然语言输入 ====================
+    document.getElementById('nlPlay').addEventListener('click', async () => {
+      await initAudio();
+      const text = document.getElementById('nlInput').value.trim();
+      if (!text) return;
+
+      if (!llmParser.isConfigured()) {
+        openSettings();
+        settingsStatus.textContent = '⚠️ 请先配置 API 再使用自然语言功能';
+        settingsStatus.style.color = '#ffcc80';
+        return;
+      }
+
+      document.getElementById('tapHint').textContent = '正在解析...';
+      try {
+        const result = await llmParser.parse(text);
+        if (result.clips && result.clips.length > 0) {
+          orchestrator.playTimeline({
+            clips: result.clips.map(c => ({
+              startTime: c.startTime || 0,
+              clipDef: {
+                material: c.material || 'wood',
+                region: c.region || 'back',
+                velocity: c.velocity || 0.5,
+                duration: c.duration || 2.0
+              }
+            })),
+            loop: result.loop !== false,
+            crossfade: result.crossfade || 0.5
+          });
+          document.getElementById('tapHint').textContent = result.description || `播放中：${result.clips.length} 个片段`;
+        } else {
+          document.getElementById('tapHint').textContent = '未解析到有效指令';
+        }
+      } catch (e) {
+        document.getElementById('tapHint').textContent = '错误：' + e.message;
+        console.error('[NL]', e);
+      }
+    });
+    document.getElementById('nlInput').addEventListener('keydown', (e) => {
+      if (e.key === 'Enter') document.getElementById('nlPlay').click();
     });
 
     // ==================== 控制条 ====================
@@ -558,7 +1419,15 @@
     // ==================== 工具函数 ====================
     async function initAudio() {
       if (!synth.isInitialized) {
+        console.log('[Audio] Initializing AudioContext...');
         await synth.init();
+        console.log('[Audio] AudioContext state:', synth.audioCtx?.state, 'initialized:', synth.isInitialized);
+      }
+    }
+
+    async function ensureAudioLibrary() {
+      if (!state.audioReady && synth.isInitialized) {
+        await initAudioLibrary();
       }
     }
 
@@ -569,27 +1438,39 @@
     // ==================== 渲染循环 ====================
     function animate() {
       requestAnimationFrame(animate);
-      controls.update();
-      
-      // 头部缓慢旋转（空闲时）
-      if (!controls.isDragging) {
-        headGroup.rotation.y += 0.001;
+      controls?.update();
+
+      // 空闲时头部缓慢旋转（已禁用）
+      // if (headGroup && !controls?.isDragging) {
+      //   headGroup.rotation.y += 0.0008;
+      // }
+
+      if (renderer && scene && camera) {
+        renderer.render(scene, camera);
       }
-      
-      renderer.render(scene, camera);
     }
 
-    // ==================== 窗口尺寸 ====================
-    window.addEventListener('resize', () => {
-      camera.aspect = window.innerWidth / window.innerHeight;
-      camera.updateProjectionMatrix();
-      renderer.setSize(window.innerWidth, window.innerHeight);
-    });
-
     // ==================== 启动 ====================
-    renderMaterials();
-    animate();
-    console.log('[TapSphere] 3D mode ready. Click on the head to tap!');
+    async function bootstrap() {
+      console.log('[Bootstrap] Starting...');
+      initThree();
+      await loadHeadModel(); // 加载 GLTF 模型（异步）
+      renderMaterials();
+      animate();
+      console.log('[Bootstrap] Done. headMesh:', !!headMesh, 'modelLoaded:', state.modelLoaded);
+
+      // 预热音频（用户首次交互时再完整初始化）
+      // 注意：AudioContext 需要用户手势才能创建
+      // 完整初始化在 initAudio() 中进行
+    }
+
+    bootstrap().then(() => {
+      window.__ASMR_DEBUG.loaded = true;
+      console.log('[TapSphere] 3D mode ready. Click on the head to tap!');
+    }).catch(err => {
+      window.__ASMR_DEBUG.errors.push(err.message);
+      console.error('[Bootstrap] Error:', err);
+    });
   </script>
 </body>
 </html>
